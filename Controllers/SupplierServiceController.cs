@@ -22,8 +22,8 @@ public class SupplierServiceController : ControllerBase{
         return _context.SupplierServices.ToList<SupplierService>();
     }
 
-    [HttpGet("/SupplierService/Avarage")]
-    public dynamic GetAvarage(){
+    [HttpGet("/[controller]/Score")]
+    public dynamic GetScore(){
         var dataset = _context.SupplierServices
             .GroupBy(x => x.SupplierID)
             .Select(x => new { 

@@ -21,12 +21,33 @@ public class ProductController : ControllerBase{
         return _context.Products.ToList<Product>();
     }
 
-    
+    /*
     [HttpGet("/Product/Category")]
     public IQueryable GetByCategory()
     {
         var a = _context.Products.GroupBy(p => p.CategoryProduct);
         return a;
+    }*/
+
+    [HttpGet("/[controller]/Stock")]
+    public dynamic GetStock(){
+        var dataset = _context.Products
+            .Select(x => new{
+                NameProduct = x.NameProduct,
+                StockProduct = x.StockProduct
+            }).ToList();
+        return dataset;
+    }
+
+    [HttpGet("/[controller]/Category")]
+    public dynamic GetCategory(){
+        var dataset = _context.Products
+            .GroupBy(x => x.CategoryProduct)
+            .Select(x => new { 
+                CategoryProduct = x.Key,
+                Stock = x.Sum(y => y.StockProduct)
+            }).ToList();
+        return dataset;
     }
     
 
