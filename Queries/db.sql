@@ -57,8 +57,8 @@ INSERT INTO Products(SupplierID, NameProduct, CountryProduct, CategoryProduct, C
 INSERT INTO Products(SupplierID, NameProduct, CountryProduct, CategoryProduct, CveProduct, WeightProduct, ScoreProduct, RealPriceProduct, SuggestedPriceProduct, PublicPriceProduct, StockProduct)
 	VALUES(2, 'Computadora', 'EU', 'Tecnologia', 'RPP', 30, 10, 1200, 1300, 1400, 20);
 
-
 SELECT * FROM Products;
+SELECT CategoryProduct, SUM(StockProduct) FROM Products GROUP BY CategoryProduct
 
 
 
